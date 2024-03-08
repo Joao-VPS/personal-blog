@@ -14,4 +14,4 @@ Se por outro lado você quer ver minha capacidade, veja meus projetos desenvolvi
  - Telefone: +55 (13) 99782-8999</p>
 
 ## English Translated Version
-Need to translate this :/
+I'm speak English too, but I need to finish the portuguese part to translate this :/
