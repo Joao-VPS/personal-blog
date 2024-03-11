@@ -22,11 +22,11 @@ public class Postagem {
 
 	@NotBlank(message = "O título é obrigatório!")
 	@Size(min = 5, max = 100, message = "O título deve conter entre 5 e 100 caracteres")
-	private String title;
+	private String titulo;
 	
 	@NotBlank(message = "O texto é obrigatório!")
 	@Size(min = 10, max = 1000, message = "O texto deve conter entre 10 e 1000 caracteres")
-	private String text;
+	private String texto;
 	
 	@UpdateTimestamp
 	private LocalDateTime data;
@@ -39,20 +39,20 @@ public class Postagem {
 		this.id = id;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getTitulo() {
+		return titulo;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
-	public String getText() {
-		return text;
+	public String getTexto() {
+		return texto;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setTexto(String texto) {
+		this.texto = texto;
 	}
 
 	public LocalDateTime getData() {
