@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.joaovps.blogpessoal.model.Postagem;
+import com.joaovps.blogpessoal.model.Tema;
 
 @Repository
-public interface PostagemRepository extends JpaRepository<Postagem, Long> {
-	public List<Postagem> findAllByTituloContainingIgnoreCase(@Param("titulo") String titulo);
+public interface TemaRepository extends JpaRepository<Tema, Long> {
+	public List<Tema> findAllByDescricaoContainingIgnoreCase(@Param("descricao") String descricao);
 }
