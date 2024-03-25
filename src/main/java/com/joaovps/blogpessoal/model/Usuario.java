@@ -26,9 +26,9 @@ public class Usuario {
 	@NotBlank(message = "O nome do usuário não pode estar vazio.")
 	private String nome;
 	
+	@Schema(example = "email@email.com.br")
 	@NotBlank(message = "O e-mail do usuário é obrigatório.")
 	@Email(message = "Insira um endereço de e-mail válido.")
-	@Schema
 	private String usuario;
 	
 	@NotBlank(message = "A senha é obrigatória.")

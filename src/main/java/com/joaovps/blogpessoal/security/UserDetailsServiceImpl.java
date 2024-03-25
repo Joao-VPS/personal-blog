@@ -1,4 +1,4 @@
-package com.joaovps.blogpessoal.security;
+﻿package com.joaovps.blogpessoal.security;
 
 import java.util.Optional;
 
@@ -14,18 +14,20 @@ import com.joaovps.blogpessoal.model.Usuario;
 import com.joaovps.blogpessoal.repository.UsuarioRepository;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService{
-
+public class UserDetailsServiceImpl implements UserDetailsService {
+	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+
 		Optional<Usuario> usuario = usuarioRepository.findByUsuario(userName);
-		
+
 		if (usuario.isPresent())
 			return new UserDetailsImpl(usuario.get());
 		else
 			throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+			
 	}
 }

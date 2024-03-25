@@ -56,12 +56,12 @@ public class UsuarioController {
 	public ResponseEntity<Usuario> cadastrarUsuario(@RequestBody @Valid Usuario usuario) {
 		String foto = usuario.getFoto();
 		
-		if (foto.equalsIgnoreCase("string") ||
+		if (foto == null ||
+				foto.equalsIgnoreCase("string") ||
 				foto.equalsIgnoreCase("null") ||
 				foto.equals("-") ||
 				foto.equals(" ") ||
-				foto == "" ||
-				foto == null)
+				foto == "")
 			usuario.setFoto("https://i.imgur.com/Tk9f10K.png");
 		
 		return usuarioService.cadastrarUsuario(usuario)
@@ -73,12 +73,12 @@ public class UsuarioController {
 	public ResponseEntity<Usuario> atualizarUsuario(@RequestBody @Valid Usuario usuario) {
 		String foto = usuario.getFoto();
 		
-		if (foto.equalsIgnoreCase("string") ||
+		if (foto == null ||
+				foto.equalsIgnoreCase("string") ||
 				foto.equalsIgnoreCase("null") ||
 				foto.equals("-") ||
 				foto.equals(" ") ||
-				foto == "" ||
-				foto == null)
+				foto == "")
 			usuario.setFoto("https://i.imgur.com/Tk9f10K.png");
 		
 		return usuarioService.atualizarUsuario(usuario)

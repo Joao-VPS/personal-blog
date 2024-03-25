@@ -22,20 +22,22 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 public class BasicSecurityConfig {
-	@Autowired
-	private JwtAuthFilter authFilter;
-	
-	@Bean
-	public UserDetailsService userDetailsService() {
-		return new UserDetailsServiceImpl();
-	}
-	
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-	
-	@Bean
+
+    @Autowired
+    private JwtAuthFilter authFilter;
+
+    @Bean
+    UserDetailsService userDetailsService() {
+
+        return new UserDetailsServiceImpl();
+    }
+
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
     AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userDetailsService());
@@ -60,7 +62,7 @@ public class BasicSecurityConfig {
 
     	http
 	        .authorizeHttpRequests((auth) -> auth
-	                .requestMatchers("/usuarios/login").permitAll()
+	                .requestMatchers("/usuarios/logar").permitAll()
 	                .requestMatchers("/usuarios/cadastrar").permitAll()
 	                .requestMatchers("/error/**").permitAll()
 	                .requestMatchers(HttpMethod.OPTIONS).permitAll()
@@ -68,8 +70,10 @@ public class BasicSecurityConfig {
 	        .authenticationProvider(authenticationProvider())
 	        .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
 	        .httpBasic(withDefaults());
-
-		return http.build();
+    	
+		return 
+				http.build();
 
     }
+
 }
