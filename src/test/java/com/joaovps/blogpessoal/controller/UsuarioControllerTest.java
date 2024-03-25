@@ -2,6 +2,8 @@ package com.joaovps.blogpessoal.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -70,6 +72,33 @@ public class UsuarioControllerTest {
 	@Test
 	@DisplayName("Atualizar usuário")
 	public void atualizarUsuario() {
+		Optional<Usuario> usuarioCadastrado = usuarioService.cadastrarUsuario(
+				new Usuario(0L, "Juliana Andrews", "juliana_andrews@email.com.br", "juliana123", "-"));
+		Usuario usuarioUpdate = new Usuario(usuarioCadastrado.get().getId(),
+				"Juliana Andrews Ramos", "juliana_ramos@email.com.br", "juliana123", "-");
 		
+		HttpEntity<Usuario> corpoRequisicao = new HttpEntity<Usuario>(usuarioUpdate);
+		
+		ResponseEntity<Usuario> corpoResposta = testRestTemplate
+				.withBasicAuth("root@root.com", "rootroot")
+				.exchange("/usuarios/atualizar", HttpMethod.PUT, corpoRequisicao, Usuario.class);
+		
+		assertEquals(HttpStatus.OK, corpoResposta.getStatusCode());
+	}
+	
+	@Test
+	@DisplayName("Listar todos os Usuários")
+	public void MostrarTodosUsuarios() {
+		usuarioService.cadastrarUsuario(
+				new Usuario(0L, "Sabrina Sanches", "sabrina_sanches@email.com.br", "sabrina123", "-"));
+
+		usuarioService.cadastrarUsuario(
+				new Usuario(0L, "Ricardo Marques", "ricardo_marques@email.com.br", "ricardo123", "-"));
+		
+		ResponseEntity<String> resposta = testRestTemplate
+				.withBasicAuth("root@root.com", "rootroot")
+				.exchange("/usuarios/all", HttpMethod.GET, null, String.class);
+		
+		assertEquals(HttpStatus.OK, resposta.getStatusCode());
 	}
 }

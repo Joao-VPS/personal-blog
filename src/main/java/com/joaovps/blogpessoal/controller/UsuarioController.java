@@ -54,6 +54,16 @@ public class UsuarioController {
 	
 	@PostMapping("/cadastrar")
 	public ResponseEntity<Usuario> cadastrarUsuario(@RequestBody @Valid Usuario usuario) {
+		String foto = usuario.getFoto();
+		
+		if (foto.equalsIgnoreCase("string") ||
+				foto.equalsIgnoreCase("null") ||
+				foto.equals("-") ||
+				foto.equals(" ") ||
+				foto == "" ||
+				foto == null)
+			usuario.setFoto("https://i.imgur.com/Tk9f10K.png");
+		
 		return usuarioService.cadastrarUsuario(usuario)
 				.map(response -> ResponseEntity.status(HttpStatus.CREATED).body(response))
 				.orElse(ResponseEntity.badRequest().build());
@@ -61,6 +71,16 @@ public class UsuarioController {
 	
 	@PutMapping("/atualizar")
 	public ResponseEntity<Usuario> atualizarUsuario(@RequestBody @Valid Usuario usuario) {
+		String foto = usuario.getFoto();
+		
+		if (foto.equalsIgnoreCase("string") ||
+				foto.equalsIgnoreCase("null") ||
+				foto.equals("-") ||
+				foto.equals(" ") ||
+				foto == "" ||
+				foto == null)
+			usuario.setFoto("https://i.imgur.com/Tk9f10K.png");
+		
 		return usuarioService.atualizarUsuario(usuario)
 				.map(response -> ResponseEntity.ok().body(response))
 				.orElse(ResponseEntity.notFound().build());
