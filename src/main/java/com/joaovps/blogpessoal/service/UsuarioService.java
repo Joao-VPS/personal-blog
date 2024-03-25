@@ -33,7 +33,7 @@ public class UsuarioService {
     }
     
     private String gerarToken(String usuario) {
-    	return "bearer " + jwtService.generateToken(usuario);
+    	return "Bearer " + jwtService.generateToken(usuario);
     }
     
     public Optional<Usuario> cadastrarUsuario(Usuario usuario) {
@@ -78,8 +78,8 @@ public class UsuarioService {
 				return usuarioLogin;
 			}
 
-        } 
-            
+        }
+		
 		return Optional.empty();
     }
 }
