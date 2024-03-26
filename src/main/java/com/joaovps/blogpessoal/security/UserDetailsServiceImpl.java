@@ -1,4 +1,4 @@
-﻿package com.joaovps.blogpessoal.security;
+package com.joaovps.blogpessoal.security;
 
 import java.util.Optional;
 
